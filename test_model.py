@@ -24,5 +24,6 @@ def test_custom_purchased_item():
     fake_persistance.save_inventory(inventory)
     assert inventory['poulet']==5
     assert error is not None
-    
+
+
 

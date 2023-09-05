@@ -1,5 +1,5 @@
 inventory = {"apple": 50, "banana": 25, "orange": 33}
-def find_inventory_by_id():
+def find_inventory():
     #couche persistance
    
     return inventory
