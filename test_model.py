@@ -1,4 +1,4 @@
-from model import customer_purchased_item
+from model import customer_purchased_item,customer_purchase_multi_items
 import fake_persistance
 def test_custom_purchased_item():
     inventory={
@@ -24,6 +24,21 @@ def test_custom_purchased_item():
     fake_persistance.save_inventory(inventory)
     assert inventory['poulet']==5
     assert error is not None
+
+def test_customer_purchased_multi_item():
+    #scénario 1
+    order_list=[{"apple":2,"banana":1},{"apple":1,'pear':1}]
+    inventory={
+        'apple':10,
+        'pear':5,
+        'bananna':9
+    }
+    error=customer_purchase_multi_items(order_list,inventory,fake_persistance)
+    fake_persistance.save_inventory(inventory)
+    assert inventory['apple']==8
+    assert error is None
+    
+
 
 
 
