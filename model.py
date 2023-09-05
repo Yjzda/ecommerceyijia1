@@ -25,9 +25,7 @@ def customer_purchase_multi_items(order_list:list, inventory_db:str,fake_persist
     for product_name, quantity in order_list:
        # if product_name in inventory_db.keys() and inventory_db[product_name] >= quantity:
        if is_product_quantity_enough(product_name,quantity,inventory):
-            #should be >=
-            inventory_db[product_name] -= quantity
-            fake_persistance.save_inventory(inventory)
+           customer_purchased_item(product_name,quantity,inventory,fake_persistance)
   
 
 def generate_inventory_report(inv:str)->str:
