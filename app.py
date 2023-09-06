@@ -14,7 +14,15 @@ def purchase_item():
 
 @app.route("/get-info", methods=['GET'])
 def get_info():
-    return jsonify({"message": "This is a GET endpoint for retrieving information."})
+    inventory = {
+    'apple': 10,
+    'pear': 5,
+    'banana': 8
+}
+    inventory1=persistance.save_inventory(inventory)
+    stock_report = persistance.generate_stock_report(inventory1)
+    
+    return jsonify(stock_report)
 
 if __name__ == "__main__":
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  # Disable favicon caching
