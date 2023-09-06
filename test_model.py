@@ -27,15 +27,18 @@ def test_custom_purchased_item():
 
 def test_customer_purchased_multi_item():
     #scénario 1
-    order_list=[{"apple":2,"banana":1},{"apple":1,'pear':1}]
+    order_list=[{"apple":2,"banana":1},{"apple":1,'banana':1}]
     inventory={
         'apple':10,
         'pear':5,
-        'bananna':9
+        'banana':8
     }
     error=customer_purchase_multi_items(order_list,inventory,fake_persistance)
     fake_persistance.save_inventory(inventory)
-    assert inventory['apple']==8
+    assert inventory['apple']==7
+    assert inventory['banana'] == 6
+    assert inventory['pear'] == 5
+
     assert error is None
     
 
