@@ -1,6 +1,7 @@
 from flask import Flask,request, jsonify
 from model import customer_purchased_item
 import persistance
+import presentation
 app = Flask(__name__)
 
 @app.route("/item-purchase",methods=['POST'])
@@ -14,13 +15,9 @@ def purchase_item():
 
 @app.route("/get-info", methods=['GET'])
 def get_info():
-    inventory = {
-    'apple': 10,
-    'pear': 5,
-    'banana': 8
-}
-    inventory1=persistance.save_inventory(inventory)
-    stock_report = persistance.generate_stock_report(inventory1)
+
+    inventory1=persistance.find_inventory()
+    stock_report = presentation.generate_stock_report(inventory1)
     
     return jsonify(stock_report)
 
