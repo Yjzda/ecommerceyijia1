@@ -10,7 +10,7 @@ def test_find_inventory():
 
 def test_add_product():
     add_product("grape", 10)
-    inventory = find_inventory(inventory)
+    inventory = find_inventory()
     assert inventory.get("grape") == 10
 
 def test_update_quantity():
